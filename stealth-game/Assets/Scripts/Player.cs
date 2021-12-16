@@ -12,13 +12,15 @@ public class Player : MonoBehaviour
 
     public float turnSpeed = 8f;
     float angle;
-    
 
+    private Rigidbody rb;
+    Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // we'll use rb to set player rotation
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,12 +37,21 @@ public class Player : MonoBehaviour
         // multiplying to inputMagnitude so that when we stop moving the magnitude is 0 and the angle will not lerp
         angle = Mathf.LerpAngle(angle, targetAngle, Time.deltaTime * turnSpeed * inputMagnitude);
 
+        /*
+         // now using rigidbody 
+         transform.eulerAngles = Vector3.up * angle; 
+         transform.Translate(transform.forward * moveSpeed * Time.deltaTime * smoothInputMagnitude, Space.World);
+        */
 
-        transform.eulerAngles = Vector3.up * angle; 
-
-        transform.Translate(transform.forward * moveSpeed * Time.deltaTime * smoothInputMagnitude, Space.World);
-
-
-
+        velocity = transform.forward * moveSpeed * smoothInputMagnitude;
     }
+
+
+
+    private void FixedUpdate()
+    {
+        rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
+        rb.MovePosition(rb.position + velocity * Time.deltaTime);
+    }
+
 }
