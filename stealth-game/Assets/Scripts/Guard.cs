@@ -10,6 +10,11 @@ public class Guard : MonoBehaviour
     public float waitTime = .1f;
     public float turnSpeed = 90; // 90 deg per sec
 
+
+    public Light spotlight;
+    public float viewDistance;
+    private float viewAngle;
+
     void OnDrawGizmos() {
         Vector3 startPosition = pathHolder.GetChild(0).position;
         Vector3 previousPisition = startPosition;
@@ -26,6 +31,9 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        viewAngle = spotlight.spotAngle;
+        
+        
         Vector3[] waypoints = new Vector3[pathHolder.childCount];
         for (int i = 0; i < waypoints.Length; i++) {
             waypoints[i] = pathHolder.GetChild(i).position;
