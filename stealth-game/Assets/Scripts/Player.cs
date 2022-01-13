@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // turning euler angle into a quaternian
         rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
         rb.MovePosition(rb.position + velocity * Time.deltaTime);
     }

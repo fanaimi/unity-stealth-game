@@ -243,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200199115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0, y: -0.52, z: -0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1837780955}
@@ -262,8 +262,8 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.97623897, g: 1, b: 0.56289303, a: 1}
   m_Intensity: 11.3
-  m_Range: 13
-  m_SpotAngle: 44.44
+  m_Range: 15
+  m_SpotAngle: 50.3
   m_InnerSpotAngle: 9.4
   m_CookieSize: 10
   m_Shadows:
@@ -526,7 +526,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.09
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -568,7 +568,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0.09
+  m_BounceIntensity: 0.15
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 738843920}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1193,6 +1193,8 @@ MonoBehaviour:
   speed: 5
   waitTime: 0.2
   turnSpeed: 90
+  spotlight: {fileID: 200199117}
+  viewDistance: 10
 --- !u!1 &1873319961
 GameObject:
   m_ObjectHideFlags: 0

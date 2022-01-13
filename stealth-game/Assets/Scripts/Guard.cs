@@ -26,6 +26,9 @@ public class Guard : MonoBehaviour
         }
 
         Gizmos.DrawLine(previousPisition, startPosition);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
     }
 
     // Start is called before the first frame update
