@@ -15,6 +15,13 @@ public class Guard : MonoBehaviour
     public float viewDistance;
     private float viewAngle;
 
+    private Transform player;
+    
+    // original spotlight color if player cannot be seen
+    private Color originalSpotlightColour;
+    
+    public LayerMask viewMask;
+
     void OnDrawGizmos() {
         Vector3 startPosition = pathHolder.GetChild(0).position;
         Vector3 previousPisition = startPosition;
@@ -26,6 +33,7 @@ public class Guard : MonoBehaviour
         }
 
         Gizmos.DrawLine(previousPisition, startPosition);
+
         
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
@@ -34,7 +42,10 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         viewAngle = spotlight.spotAngle;
+
+        originalSpotlightColour = spotlight.color;
         
         
         Vector3[] waypoints = new Vector3[pathHolder.childCount];
@@ -80,8 +91,35 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CanSeePlayer())
+        {
+            spotlight.color = Color.red;
+        }
+        else
+        {
+            spotlight.color = originalSpotlightColour;
+        }
     }
 
-    // paused at 11:05
+
+    private bool CanSeePlayer()
+    {
+        if (Vector3.Distance(transform.position, player.position) < viewDistance)
+        {
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenGuardAndPlayer = Vector3.Angle(transform.forward, dirToPlayer);
+
+            if (angleBetweenGuardAndPlayer < viewAngle / 2f)
+            {
+                if (!Physics.Linecast(transform.position, player.position, viewMask))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
 }
