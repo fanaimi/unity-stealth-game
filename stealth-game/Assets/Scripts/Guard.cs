@@ -10,6 +10,7 @@ public class Guard : MonoBehaviour
     public float waitTime = .1f;
     public float turnSpeed = 90; // 90 deg per sec
 
+    [SerializeField] private Animator animator;
 
     public Light spotlight;
     public float viewDistance;
@@ -99,6 +100,17 @@ public class Guard : MonoBehaviour
         {
             spotlight.color = originalSpotlightColour;
         }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("Attacking", true);
+        }
+        
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetBool("Attacking", false);
+        }
+
     }
 
 
