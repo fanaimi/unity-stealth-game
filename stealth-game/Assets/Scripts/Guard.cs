@@ -95,13 +95,15 @@ public class Guard : MonoBehaviour
         if (CanSeePlayer())
         {
             spotlight.color = Color.red;
+            animator.SetBool("Attacking", true);
         }
         else
         {
             spotlight.color = originalSpotlightColour;
+            animator.SetBool("Attacking", false);
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        /*if (Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("Attacking", true);
         }
@@ -109,7 +111,7 @@ public class Guard : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("Attacking", false);
-        }
+        }*/
 
     }
 
